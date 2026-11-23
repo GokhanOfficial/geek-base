@@ -29,6 +29,11 @@ jobs:
             type=raw,value=latest
             type=raw,value={{date 'YYYY.MM'}}
 
+      # arm64 is built under QEMU emulation (only apk/unpack work, so it stays fast).
+      - uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
+
       - uses: docker/setup-buildx-action@v3
 
       # Without the secrets (e.g. a fork) the image is built but not pushed.
@@ -44,7 +49,7 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           context: .
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           pull: true
           push: ${{ steps.creds.outputs.ok == 'true' }}
           tags: ${{ steps.meta.outputs.tags }}

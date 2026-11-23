@@ -21,6 +21,8 @@ Also sets `PYTHONUNBUFFERED=1`, `PYTHONDONTWRITEBYTECODE=1`, `PIP_NO_CACHE_DIR=1
 Several services on one host built `FROM gokhanofficial/geek-base` store these
 layers only once (~450 MB uncompressed instead of per image).
 
+Multi-arch: `linux/amd64` and `linux/arm64`.
+
 ## Tags
 
 - `latest` — most recent build
